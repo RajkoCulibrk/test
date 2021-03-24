@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-8">
+    <div class="row d-flex justify-content-around">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li *ngIf="page > 1" class="page-item">
+            <a
+              (click)="previousPage()"
+              class="page-link"
+              [routerLink]="['/cards']"
+              >Previous</a
+            >
+          </li>
+
+          <li *ngIf="page * pageSize < count" class="page-item">
+            <a
+              (click)="nextPage()"
+              class="page-link"
+              [routerLink]="['/cards']"
+              href="#"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <nav class="d-flex" aria-label="...">
+        <ul class="pagination">
+          <li (click)="setPageSize(5)" class="page-item">
+            <a class="page-link" [routerLink]="['/cards']">5</a>
+          </li>
+          <li (click)="setPageSize(10)" class="page-item">
+            <a class="page-link" [routerLink]="['/cards']">10</a>
+          </li>
+          <li (click)="setPageSize(20)" class="page-item">
+            <a class="page-link" [routerLink]="['/cards']">20</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <app-single-card *ngFor="let card of cards" [card]="card"></app-single-card>
+  </div>
+  <div class="col-4">
+    <app-comments></app-comments>
+  </div>
+</div>

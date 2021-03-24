@@ -1,0 +1,33 @@
+<div class="row p-5">
+  <div class="col-3">
+    <img [src]="card.image" [alt]="card.title" />
+  </div>
+  <div class="col-9">
+    <div class="card-title lead">
+      <a (click)="setCurrent(card._id)" routerLink="/cards">
+        {{ card.title }}</a
+      >
+    </div>
+    <div class="card-description lead">
+      <span *ngIf="!showFull">
+        {{ card.description.substr(0, 130) }}
+        <span *ngIf="card.description.length > 130"
+          >...
+          <a (click)="setShowFull()" [routerLink]="['/cards']"
+            >Show More</a
+          ></span
+        >
+      </span>
+
+      <span *ngIf="showFull"
+        >{{ card.description }}
+        <a (click)="setShowFull()" [routerLink]="['/cards']">Show Less</a></span
+      >
+    </div>
+    <div class="card-options p-2 d-flex justify-content-end">
+      <div (click)="like()" class="btn btn-success">+</div>
+      {{ card.grade }}
+      <div (click)="dislike()" class="btn btn-danger">-</div>
+    </div>
+  </div>
+</div>

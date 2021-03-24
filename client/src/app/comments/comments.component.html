@@ -1,0 +1,38 @@
+<div class="row d-flex flex-column p-5">
+  <div *ngIf="currentCardId" class="form">
+    <form (submit)="postComment(form.value)" #form="ngForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input
+          ngModel
+          name="author"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Comment</label>
+        <input
+          ngModel
+          name="text"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Comment"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div *ngFor="let comment of commentList" class="comment">
+    <div class="comment-header d-flex justify-content-between">
+      <span class="font-weight-bold">{{ comment.author }}</span>
+      <span>{{ comment.date | date: "short" }}</span>
+    </div>
+    <div class="comment-body mt-2">
+      {{ comment.text }}
+    </div>
+  </div>
+</div>
